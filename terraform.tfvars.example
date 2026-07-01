@@ -1,0 +1,6 @@
+location       = "Central US"
+rdp_source     = "YOUR_PUBLIC_IP/32"
+server_vm_size = "Standard_B2as_v2"
+client_vm_size = "Standard_B2as_v2"
+# admin_password is NOT set here — use environment variable:
+# export TF_VAR_admin_password="YourStrongPassword!"

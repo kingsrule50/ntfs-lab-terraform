@@ -8,7 +8,7 @@
 
 This is the first lab in a three-part series demonstrating enterprise-grade cloud infrastructure and Windows Server administration skills. In this lab, I use **Terraform** to provision the foundational Azure infrastructure for a three-tier Windows lab environment.
 
-This lab follows the recommended best practice of keeping infrastructure provisioning separate from OS-level configuration. Terraform handles **only** the Azure resources. All Active Directory and file server configuration is handled in Labs 2 and 3.
+I follow the recommended best practice of keeping infrastructure provisioning separate from OS-level configuration. I use Terraform for **only** the Azure resources — I handle all Active Directory and file server configuration in Labs 2 and 3.
 
 ---
 
@@ -70,6 +70,8 @@ Azure Subscription (KINGSRULE50)
 ---
 
 ## Key Design Decisions
+
+These are the choices I made and why:
 
 - **Static private IPs** — DC01 (`10.0.1.5`), FS01 (`10.0.1.6`), CLIENT01 (`10.0.1.7`) are hardcoded to prevent IP conflicts across deployments
 - **VNet DNS set to DC01** — All VMs automatically use DC01 as their DNS server, enabling domain resolution without manual configuration

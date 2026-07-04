@@ -109,6 +109,9 @@ terraform init
 terraform plan
 ```
 
+![Terraform plan](screenshots/08-terraform-plan.png)
+*`terraform plan` resolves to exactly 21 resources to add — Windows Server 2025 Datacenter images, static private IPs, and the Key Vault suffix generated at deploy time.*
+
 **Step 4 — Deploy:**
 ```bash
 terraform apply -auto-approve
@@ -128,6 +131,11 @@ Once all three VMs are running, proceed to [Lab 2 - Active Directory](https://gi
 ---
 
 ## Deployment Results
+
+**Clean end-to-end apply — 21 resources, zero changes, zero destroys:**
+
+![Terraform apply complete](screenshots/09-terraform-apply-complete.png)
+*`Apply complete! Resources: 21 added, 0 changed, 0 destroyed.` Outputs confirm DC01 at the static `10.0.1.5` and the generated Key Vault name — run from macOS using the same remote state shared across all my machines.*
 
 **All 15 resources deployed to RG-FileServerLab:**
 

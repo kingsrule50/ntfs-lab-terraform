@@ -24,6 +24,9 @@ This lab follows the recommended best practice of keeping infrastructure provisi
 
 ## Architecture
 
+![Lab Architecture](screenshots/00-architecture.png)
+*Full series architecture — infrastructure provisioned with Terraform (this lab), configuration applied with phased PowerShell (Labs 2 and 3).*
+
 ```
 Azure Subscription (KINGSRULE50)
 └── Resource Group: RG-FileServerLab (East US)
@@ -98,6 +101,9 @@ export TF_VAR_admin_password="YourStrongPassword123!"
 terraform init
 ```
 
+![Terraform init](screenshots/02-terraform-init.png)
+*Terraform initializes the `azurerm` remote state backend and installs pinned providers.*
+
 **Step 3 — Review the plan:**
 ```bash
 terraform plan
@@ -118,6 +124,33 @@ key_vault_name     = "kv-fslab-xxxx"
 
 **Step 6 — Proceed to Lab 2:**
 Once all three VMs are running, proceed to [Lab 2 - Active Directory](https://github.com/kingsrule50/ntfs-lab-ad).
+
+---
+
+## Deployment Results
+
+**All 15 resources deployed to RG-FileServerLab:**
+
+![Resource Group](screenshots/03-resource-group-deployed.png)
+*Three VMs (DC01, FS01, CLIENT01) with NICs, public IPs, managed disks, NSG, and Key Vault — all provisioned by a single `terraform apply`.*
+
+**Network Security Group — RDP locked to a single source IP:**
+
+![NSG RDP Rule](screenshots/04-nsg-rdp-rule.png)
+*Inbound RDP (3389) is allowed only from my `/32` source address. Everything else inbound is denied.*
+
+**Key Vault provisioned and tagged by Terraform:**
+
+![Key Vault Overview](screenshots/05-keyvault-overview.png)
+*Note the `ManagedBy: Terraform` tag — the vault is created as part of the deployment, not manually.*
+
+![Key Vault Secret](screenshots/06-keyvault-secret.png)
+*The VM admin password lives in Key Vault as `vm-admin-password`. It is never written to a file or committed to the repo.*
+
+**Remote state stored in Azure Blob Storage:**
+
+![Remote State Blob](screenshots/07-remote-state-blob.png)
+*`ntfs-lab.terraform.tfstate` in the `tfstate` container — enabling state locking and safe re-runs from any machine.*
 
 ---
 
@@ -142,6 +175,9 @@ ntfs-lab-terraform/
 ├── terraform.tfvars         # Variable values (not committed)
 └── terraform.tfvars.example # Template for required variables
 ```
+
+![Project Structure](screenshots/01-project-structure.png)
+*The project in VS Code — `.gitignore` excludes `terraform.tfvars`, state files, and plan files so no secrets ever reach the repo.*
 
 ---
 

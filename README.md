@@ -4,6 +4,15 @@
 ![Azure](https://img.shields.io/badge/Microsoft_Azure-Cloud-0089D6?logo=microsoftazure)
 ![License](https://img.shields.io/badge/License-MIT-green)
 
+## 🎥 Lab Demo
+
+*Watch the full lab walkthrough (5 min):*
+
+
+https://github.com/user-attachments/assets/dbf954b3-a6c6-41ea-899f-60fe5191c91e
+
+
+
 ## Overview
 
 This is the first lab in a three-part series demonstrating enterprise-grade cloud infrastructure and Windows Server administration skills. In this lab, I use **Terraform** to provision the foundational Azure infrastructure for a three-tier Windows lab environment.
